@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Feeds</h1>
+  <div id="new-feed">
+    <!--form-->
+      <div class="row">
+        <div class="three columns">
+          <input type="text" placeholder="Feed name" id="name" autofocus v-model="name">
+        </div>
+        <div class="three columns">
+          <input type="text" placeholder="Link" id="link" v-model="link">
+        </div>
+        <div class="three columns">
+          <input type="text" placeholder="Description" id="description" v-model="description">
+        </div>
+        <div class="three columns">
+          <button class="button-primary" id="create" v-on:click="createFeed">Create</button>
+        </div>
+      </div>
+    <!--/form-->
+  </div>
+
+  <table>
+    <% @feeds.each do |f| %>
+      <tr>
+        <td><%= f.name %></td>
+        <td><%= f.link %></td>
+        <td><%= f.description %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<script src="/js/feeds.js"></script>
