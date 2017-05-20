@@ -55,3 +55,8 @@ nav.navbar li {
 .main {
   padding-top: 70px;
 }
+
+.delete {
+  color: #c00;
+  font-size: 20px;
+}

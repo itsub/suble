@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 
 require 'sinatra'
+require 'sinatra/json'
 require 'sequel'
 require 'yaml'
 require 'colorize'
@@ -11,7 +12,7 @@ configure do
   set :views, 'views'
 end
 
-dbc = YAML.load_file('config/database.yml')
+dbc = YAML.load_file('../config/database.yml')
 db = Sequel.connect(adapter: dbc['adapter'], host: dbc['host'], database: dbc['database'], user: dbc['user'], password: dbc['password'])
 
 
@@ -25,9 +26,15 @@ get '/' do
 end
 
 get '/feeds' do
-  @feeds = db[:feeds].all
+  @feeds = db[:feeds].order(Sequel.desc(:fid)).all
   puts @feeds.inspect.colorize(:yellow)
   erb :feeds
+end
+
+delete '/feeds/delete/:fid' do
+  fid = params[:fid]
+  db[:feeds].where(fid: fid).delete
+  ':)'
 end
 
 post '/feeds/new' do

@@ -19,15 +19,23 @@
     <!--/form-->
   </div>
 
-  <table>
-    <% @feeds.each do |f| %>
+  <table class="u-full-width">
+    <thead>
       <tr>
-        <td><%= f.name %></td>
-        <td><%= f.link %></td>
-        <td><%= f.description %></td>
+        <th>Name</th><th>Link</th><th>Description</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="feeds-list">
+    <% @feeds.each do |f| %>
+      <tr id="feed-<%= f[:fid] %>">
+        <td><%= f[:name] %></td>
+        <td><%= f[:link] %></td>
+        <td><%= f[:description] %></td>
+        <td><a class="delete" href="javascript:deleteFeed(<%= f[:fid] %>)"><i class="icon ion-ios-trash-outline delete"></i></a></td>
       </tr>
     <% end %>
+    </tbody>
   </table>
 </div>
 
-<script src="/js/feeds.js"></script>
+<script src="/js/feeds.js?2"></script>
