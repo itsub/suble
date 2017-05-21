@@ -10,9 +10,9 @@
         <label for="keywords">Comma separated keywords</label>
         <input type="text" id="keywords" name="keywords" class="as-block u-full-width" size="32" maxlength="32">
         <label for="feeds">Feeds</label>
-        <ul>
+        <ul class="feeds-checkboxes-list">
         <% @feeds.each do |f| %>
-          <li><input type="checkbox" name="feed" value="<%= f[:fid] %>">&nbsp;<%= f[:name] %></li>
+          <li><input type="checkbox" name="feeds[]" value="<%= f[:fid] %>">&nbsp;<%= f[:name] %></li>
         <% end %>
         </ul>
         <input type="submit" class="button-primary" value="Create">

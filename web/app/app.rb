@@ -3,8 +3,13 @@
 require 'sinatra'
 require 'sinatra/json'
 require 'sequel'
+require 'logger'
 require 'yaml'
 require 'colorize'
+
+require './libs/database'
+
+db = @dbm.get_connection
 
 configure do
   set :port, 55111
@@ -12,8 +17,8 @@ configure do
   set :views, 'views'
 end
 
-dbc = YAML.load_file('../config/database.yml')
-db = Sequel.connect(adapter: dbc['adapter'], host: dbc['host'], database: dbc['database'], user: dbc['user'], password: dbc['password'])
+log = Logger.new('../logs/web.log')
+log.debug 'hello'
 
 
 # Get JSON Params (Sinatra bug work around)
@@ -46,6 +51,7 @@ end
 # Scopes
 
 get '/scopes' do
+  @keywords = Keywords.all
   @feeds = db[:feeds].order(:tag, :name).all
   puts @feeds.inspect
   erb :scopes

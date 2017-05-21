@@ -36,7 +36,7 @@
     <% @feeds.each do |f| %>
       <tr id="feed-<%= f[:fid] %>">
         <td><%= f[:name] %></td>
-        <td><%= f[:link] %></td>
+        <td><a href="<%= f[:link] %>"><%= f[:link] %></a></td>
         <td><%= f[:tag] %></td>
         <td><%= f[:description] %></td>
         <td><a class="delete" href="javascript:deleteFeed(<%= f[:fid] %>)"><i class="icon ion-ios-trash-outline delete"></i></a></td>
