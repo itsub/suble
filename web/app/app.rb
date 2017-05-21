@@ -27,7 +27,6 @@ end
 
 get '/feeds' do
   @feeds = db[:feeds].order(Sequel.desc(:fid)).all
-  puts @feeds.inspect.colorize(:yellow)
   erb :feeds
 end
 
@@ -39,5 +38,5 @@ end
 
 post '/feeds/new' do
   jp = get_json_params
-  db[:feeds].insert(name: jp['name'], link: jp['link'], description: jp['description'])
+  db[:feeds].insert(name: jp['name'], link: jp['link'], tag: jp['tag'], description: jp['description'])
 end

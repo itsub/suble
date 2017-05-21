@@ -4,15 +4,22 @@
     <!--form-->
       <div class="row">
         <div class="three columns">
-          <input type="text" placeholder="Feed name" id="name" autofocus v-model="name">
+          <input type="text" placeholder="Feed name" id="name" autofocus required v-model="name">
         </div>
+
         <div class="three columns">
-          <input type="text" placeholder="Link" id="link" v-model="link">
+          <input type="text" placeholder="Link" id="link" required v-model="link">
         </div>
-        <div class="three columns">
-          <input type="text" placeholder="Description" id="description" v-model="description">
+
+        <div class="two columns">
+          <input type="text" size="10" placeholder="Tag" id="description" required v-model="tag">
         </div>
-        <div class="three columns">
+
+        <div class="two columns">
+          <input type="text" size="10" placeholder="Description" id="description" v-model="description">
+        </div>
+
+        <div class="two columns">
           <button class="button-primary" id="create" v-on:click="createFeed">Create</button>
         </div>
       </div>
@@ -22,7 +29,7 @@
   <table class="u-full-width">
     <thead>
       <tr>
-        <th>Name</th><th>Link</th><th>Description</th><th>Action</th>
+        <th>Name</th><th>Link</th><th>Tag</th><th>Description</th><th>Action</th>
       </tr>
     </thead>
     <tbody id="feeds-list">
@@ -30,6 +37,7 @@
       <tr id="feed-<%= f[:fid] %>">
         <td><%= f[:name] %></td>
         <td><%= f[:link] %></td>
+        <td><%= f[:tag] %></td>
         <td><%= f[:description] %></td>
         <td><a class="delete" href="javascript:deleteFeed(<%= f[:fid] %>)"><i class="icon ion-ios-trash-outline delete"></i></a></td>
       </tr>
@@ -38,4 +46,4 @@
   </table>
 </div>
 
-<script src="/js/feeds.js?2"></script>
+<script src="/js/feeds.js?3"></script>

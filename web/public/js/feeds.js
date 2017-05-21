@@ -3,7 +3,8 @@ var createFeed = new Vue({
   data: {
     name: '',
     link: '',
-    description: ''
+    description: '',
+    tag: ''
   },
   methods: {
     createFeed: function() {
@@ -12,13 +13,14 @@ var createFeed = new Vue({
         {
           name: this.name,
           link: this.link,
+          tag: this.tag.length == 0 ? 'default' : this.tag,
           description: this.description
         }
       ).then(function(response) {
         console.log(response);
         var feedsList = document.getElementById('feeds-list');
         feedsList.innerHTML = '<tr><td>' +
-                  [c.name, c.link, c.description, '<i class="icon ion-happy-outline"></i>'].join('</td><td>') +
+                  [c.name, c.link, c.tag, c.description, '<i class="icon ion-happy-outline"></i>'].join('</td><td>') +
           '</td></tr>' + feedsList.innerHTML;
       });
     }
