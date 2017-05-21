@@ -60,3 +60,7 @@ nav.navbar li {
   color: #c00;
   font-size: 20px;
 }
+
+.as-block {
+  display: block;
+}

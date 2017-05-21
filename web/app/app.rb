@@ -25,6 +25,8 @@ get '/' do
   erb :front
 end
 
+# Feeds
+
 get '/feeds' do
   @feeds = db[:feeds].order(Sequel.desc(:fid)).all
   erb :feeds
@@ -39,4 +41,16 @@ end
 post '/feeds/new' do
   jp = get_json_params
   db[:feeds].insert(name: jp['name'], link: jp['link'], tag: jp['tag'], description: jp['description'])
+end
+
+# Scopes
+
+get '/scopes' do
+  @feeds = db[:feeds].order(:tag, :name).all
+  puts @feeds.inspect
+  erb :scopes
+end
+
+post '/scopes/new' do
+  puts params.inspect.colorize(:red)
 end

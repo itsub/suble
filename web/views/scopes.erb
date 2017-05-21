@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Scopes</h1>
+
+  <div class="row">
+    <div class="ten columns">
+      <h2>New</h2>
+      <form action="/scopes/new" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="as-block" size="32" maxlength="32">
+        <label for="keywords">Comma separated keywords</label>
+        <input type="text" id="keywords" name="keywords" class="as-block u-full-width" size="32" maxlength="32">
+        <label for="feeds">Feeds</label>
+        <ul>
+        <% @feeds.each do |f| %>
+          <li><input type="checkbox" name="feed" value="<%= f[:fid] %>">&nbsp;<%= f[:name] %></li>
+        <% end %>
+        </ul>
+        <input type="submit" class="button-primary" value="Create">
+      </form>
+    </div>
+    <div class="two columns">
+      <h2>List</h2>
+    </div>
+  </div>
+
+<script src="/js/scopes.js?1"></script>
